@@ -80,17 +80,20 @@
         function checkPassword() {
             const password = document.getElementById('password').value;
 
+            // Хеш правильного паролю (MD5 для "2101")
             const correctHash = "c5866e93cab1776890fe343c9e7063fb";
-
-            
             const hash = CryptoJS.MD5(password).toString();
 
-            // Порівняння хешу
             if (hash === correctHash) {
+                // Зашифроване посилання
+                const encryptedUrl = "U2FsdGVkX19jqrPfoMtxyEw6J4NFsPFPkHdxuCzvLl/Ux7bnVvPzwihOxokgpHR0gCqZTAxjRvFO7vZFEu5USn38cYTuNvs39UGVlg==";
+                
+                // Розшифровка посилання
+                const decryptedUrl = CryptoJS.AES.decrypt(encryptedUrl, password).toString(CryptoJS.enc.Utf8);
+
                 document.body.innerHTML = `
                     <iframe title="RYM" width="95%" height="95%"
-                        src="https://app.powerbi.com/view?r=eyJrIjoiNzU0NThlNGUtYmQ2ZS00MTQxLWIzNGUtNzhlZjk0MDhlMTA5IiwidCI6IjQ4NDljZmIxLThiOTgtNGFkNS05NDY3LWFiNDYxMzFiNzRhYSIsImMiOjl9"
-                        frameborder="0" allowFullScreen="true"></iframe>
+                        src="${decryptedUrl}" frameborder="0" allowFullScreen="true"></iframe>
                 `;
             } else {
                 alert('Неправильний пароль. Спробуйте ще раз.');
