@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Вхід</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -80,8 +81,8 @@
         function checkPassword() {
             const password = document.getElementById('password').value;
 
-            // Хеш правильного паролю (MD5 для "1111")
-            const correctHash = "e5838994dd02a3cf20a7dc74d7a2c229";
+            // Хеш правильного паролю (MD5 для "2101")
+            const correctHash = "17ca8a39cfa2d796fecde99a3a161eaf";
 
             // Генерація хешу MD5 введеного паролю
             const hash = CryptoJS.MD5(password).toString();
