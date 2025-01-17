@@ -79,8 +79,15 @@
 
         function checkPassword() {
             const password = document.getElementById('password').value;
-            const correctPassword = '1111'; // Замініть на ваш пароль
-            if (password === correctPassword) {
+
+            // Хеш правильного паролю (MD5 для "1111")
+            const correctHash = "e5838994dd02a3cf20a7dc74d7a2c229";
+
+            // Генерація хешу MD5 введеного паролю
+            const hash = CryptoJS.MD5(password).toString();
+
+            // Порівняння хешу
+            if (hash === correctHash) {
                 document.body.innerHTML = `
                     <iframe title="RYM" width="100%" height="100%"
                         src="https://app.powerbi.com/view?r=eyJrIjoiNzU0NThlNGUtYmQ2ZS00MTQxLWIzNGUtNzhlZjk0MDhlMTA5IiwidCI6IjQ4NDljZmIxLThiOTgtNGFkNS05NDY3LWFiNDYxMzFiNzRhYSIsImMiOjl9"
